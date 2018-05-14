@@ -13,7 +13,6 @@ export class Window extends PureComponent {
     }
 
     window = null;
-    rootEl = document.createElement('div');
     
     getFeaturesString = () => Object.entries({
             top: this.props.y,
@@ -27,7 +26,6 @@ export class Window extends PureComponent {
     
     onBeforeUnload = () => {
         if(this.props.onClose) this.props.onClose(this.window);
-        this.window.close();
     }
 
     componentDidMount() {
@@ -38,24 +36,23 @@ export class Window extends PureComponent {
             if(this.props.onBlocked) this.props.onBlocked();
         } else {   
             this.window.document.title = title;
-            this.window.document.body.appendChild(this.rootEl);
             this.window.addEventListener('beforeunload', this.onBeforeUnload, { once: true });
+            const root = document.createElement('div');
+            this.window.document.body.appendChild(root);
             if(this.props.onLoad) this.props.onLoad(this.window);
 
             // NOTE: Reason to use unstable_renderSubtreeIntoContainer:
             // https://twitter.com/dan_abramov/status/774591045980024833?lang=en
             unstable_renderSubtreeIntoContainer(
-                this, this.props.children(this.window), this.rootEl
+                this, 
+                this.props.children(this.window),
+                root,
             );
         }
     }
 
     componentWillUnmount() {
-        if(this.window) { 
-            this.onBeforeUnload();
-            this.rootEl = null;
-            this.window = null;
-        }
+        this.window = null;
     }
 
     render() {
