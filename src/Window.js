@@ -6,10 +6,10 @@ import { actionTypes } from './reducer';
 export class Window extends PureComponent {
     static defaultProps = {
         menubar: '0',
-        toolbar: '0',
-        titlebar: '0',
         scrollbars: '1',
         status: '0',
+        toolbar: '0',
+        titlebar: '0',
     }
 
     window = null;
@@ -20,6 +20,8 @@ export class Window extends PureComponent {
             width: this.props.width,
             height: this.props.height,
             menubar: this.props.menubar,
+            scrollbars: this.props.scrollbars,
+            status: this.props.status,
             toolbar: this.props.toolbar,
             titlebar: this.props.titlebar,
         }).map(([key, value]) => `${key}=${value}`).join();
@@ -62,7 +64,6 @@ export class Window extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    isOpen: state.openWindow,
     width: state.lastSize[0],
     height: state.lastSize[1],
     x: state.lastPosition[0],
