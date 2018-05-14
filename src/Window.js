@@ -43,6 +43,7 @@ export class Window extends PureComponent {
 
             // NOTE: Reason to use unstable_renderSubtreeIntoContainer:
             // https://twitter.com/dan_abramov/status/774591045980024833?lang=en
+            // https://github.com/facebook/react/issues/4819
             unstable_renderSubtreeIntoContainer(
                 this, 
                 this.props.children(this.window),
