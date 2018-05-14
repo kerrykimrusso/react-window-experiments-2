@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
     onIncrementBtnClicked: () => dispatch({ type: actionTypes.INCREMENT }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
