@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actionTypes } from './reducer';
-import Window from './Window';
+import { Window } from 'react-external-window';
 import Form from './Form';
 
 
@@ -21,12 +21,14 @@ class App extends Component {
                         url=''
                         title='My Window'
                         name='child'
+                        width={640}
+                        height={480}
                         onClose={this.props.onCloseWindow}
                     >
                     {(window) => (
                         <React.Fragment>
                             <Form />
-                            <button onClick={() => window.close()}>Close!</button>
+                            <button onClick={() => { window.close() }}>Close!</button>
                         </React.Fragment>
                     )}
                     </Window>
