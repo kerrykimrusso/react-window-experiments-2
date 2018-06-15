@@ -7,8 +7,7 @@ services:
       - 3000:3000
     volumes:
       - .:/app
-      - node_modules:/usr/local/lib/node_modules
-    entrypoint: bash -c "cd /app && npm i -g create-react-app && yarn install && yarn start"
+    entrypoint: bash -c "cd /app && yarn cache clean && yarn install && yarn start"
 
 volumes:
   node_modules:

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actionTypes } from './reducer';
-import { Window } from 'react-external-window';
+import Window from 'react-external-window';
 import Form from './Form';
 
 
