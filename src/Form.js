@@ -13,10 +13,21 @@ export class Form extends Component {
 
   render() {
     return (
-      <div className="form">
-        <input onChange={this.onInputChange} value={this.props.query} />
-        <div>Count: {this.props.counts.join(', ')}</div>
-        <button onClick={this.onIncrementBtnClicked}>Increment!</button>
+      <div>
+        <input
+          className="form-control"
+          onChange={this.onInputChange}
+          value={this.props.query}
+        />
+        <div className="form-text text-muted">
+          Count: {this.props.counts.join(', ')}
+        </div>
+        <button
+          className="btn btn-primary"
+          onClick={this.onIncrementBtnClicked}
+        >
+          Increment!
+        </button>
       </div>
     );
   }
